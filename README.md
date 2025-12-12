@@ -46,28 +46,16 @@ Default credentials (for quick local testing)
 
 ### Step 1: Initial Server Setup
 
-1. SSH into your server as root:
+1. SSH into your server as root or your deploy user (example using your SSH key):
    ```bash
+   # As root (if needed)
    ssh root@your-server-ip
-   ```
 
-2. Download and run the setup script:
-   ```bash
-   wget https://raw.githubusercontent.com/your-repo/eport-fast/main/scripts/setup-server.sh
-   chmod +x setup-server.sh
-   sudo bash setup-server.sh
-   ```
+   # As your deploy user using your private key (replace placeholders):
+   ssh -i ~/.ssh/<your_private_key> <your_user>@<your_server_domain>
 
-3. Follow the prompts to:
-   - Enter your username
-   - Paste your SSH public key
-   - The eport user's SSH key is automatically configured
-
-4. **IMPORTANT**: Test SSH login before logging out:
-   ```bash
-   # From another terminal
-   ssh your-username@your-server-ip
-   ssh eport@your-server-ip
+   # When connecting as the `eport` user, use the same private key (replace placeholders):
+   ssh -i ~/.ssh/<your_private_key> eport@<your_server_domain>
    ```
 
 ### Step 2: Deploy the Application
