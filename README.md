@@ -26,7 +26,7 @@ Public URLs
 Default credentials (for quick local testing)
 -----------------------------------------
 - Email: admin@warranty.local
-- Password: Admin@123
+- Password: ******
 
 
 ```
