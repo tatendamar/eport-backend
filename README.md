@@ -19,6 +19,7 @@ Public URLs
 - Frontend (Next.js) hosted on Vercel: https://eport-web-app.vercel.app/
    - To create an admin account, first visit: https://eport-web-app.vercel.app/admin-signup
       - Sign up with an email address and follow the frontend flow to add assets and register warranties.
+      - After creating the initial admin account, that admin should invite user from the admin dashboard.
 - Backend (Warranty API): https://server10.eport.ws/
    - Use the backend to view and edit warranties (requires signing in as admin)
 
