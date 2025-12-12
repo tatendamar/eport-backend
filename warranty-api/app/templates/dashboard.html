@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warranty Register - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-6xl mx-auto">
+        <header class="flex items-center justify-between mb-6">
+            <h1 class="text-2xl font-bold">Warranty Dashboard</h1>
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-600">{{ user.email if user else 'Guest' }}</span>
+                <a href="/web/logout" class="text-sm text-blue-600">Logout</a>
+            </div>
+        </header>
+
+        <section class="bg-white p-6 rounded shadow">
+            <h2 class="text-lg font-semibold mb-4">Warranties</h2>
+            {% if warranties %}
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Asset</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    {% for w in warranties %}
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ w.id }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ w.asset_serial }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ w.customer_name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ w.status }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                            <a href="/web/warranty/{{ w.id }}" class="text-blue-600">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-gray-600">No warranties found.</p>
+            {% endif %}
+
+            <div class="mt-4 flex justify-between items-center">
+                <div>
+                    <p class="text-sm text-gray-500">Page {{ page }} of {{ total_pages }}</p>
+                </div>
+                <div>
+                    {% if page > 1 %}
+                        <a href="/web/dashboard?page={{ page - 1 }}" class="px-3 py-1 bg-gray-200 rounded">Prev</a>
+                    {% endif %}
+                    {% if page < total_pages %}
+                        <a href="/web/dashboard?page={{ page + 1 }}" class="px-3 py-1 bg-gray-200 rounded">Next</a>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
